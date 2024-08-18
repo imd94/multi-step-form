@@ -26,8 +26,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-    .markdown h1 {
-        @apply text-custom-esPrimary bg-custom-esSecondary font-PlusJakarta;
+@layer components {
+    body {
+        @apply font-Ubuntu;
     }
-} */
+}
