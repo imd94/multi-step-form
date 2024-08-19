@@ -12,22 +12,31 @@ import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
 
 // Components
-import Register from './components/Register';
+import Register from './components/Registration/Register';
 
 function App(props) {
     const originalState = {
-        test: ''
+        stepCounter: localStorage.getItem('stepNum') || 1,
     }
 
     function ourReducer(draft, action) {
         switch(action.type) {
-            case 'test':
-                draft.test = 'test';
+            case 'nextStep':
+                draft.stepCounter++;
+                return;
+            case 'prevStep':
+                draft.stepCounter--;
                 return;
         }
     }
 
     const [state, dispatch] = useImmerReducer(ourReducer, originalState);
+
+    useEffect(() => {
+        if(state.stepCounter) {
+            localStorage.setItem('stepNum', state.stepCounter);
+        }
+    }, [state.stepCounter]);
 
     return (
         <StateContext.Provider value={state}>
