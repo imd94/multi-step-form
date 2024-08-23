@@ -597,6 +597,10 @@ body {
   font-family: Ubuntu, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .fixed {
   position: fixed;
 }
@@ -617,16 +621,8 @@ body {
   top: 0px;
 }
 
-.col-\[1_\/_1\] {
-  grid-column: 1 / 1;
-}
-
 .col-\[1_\/_-1\] {
   grid-column: 1 / -1;
-}
-
-.row-\[1_\/_1\] {
-  grid-row: 1 / 1;
 }
 
 .row-\[1_\/_-1\] {
@@ -686,12 +682,12 @@ body {
   width: 100%;
 }
 
-.max-w-\[58\.75rem\] {
-  max-width: 58.75rem;
-}
-
 .max-w-\[28\.125rem\] {
   max-width: 28.125rem;
+}
+
+.max-w-\[58\.75rem\] {
+  max-width: 58.75rem;
 }
 
 .cursor-pointer {
@@ -702,16 +698,8 @@ body {
   list-style-type: none;
 }
 
-.grid-cols-\[minmax\(15\.3125rem\2c _17\.1875rem\)_minmax\(17\.1875rem\2c _100\%\)\] {
-  grid-template-columns: minmax(15.3125rem, 17.1875rem) minmax(17.1875rem, 100%);
-}
-
 .grid-cols-\[minmax\(13\.75rem\2c _17\.1875rem\)_minmax\(17\.1875rem\2c _100\%\)\] {
   grid-template-columns: minmax(13.75rem, 17.1875rem) minmax(17.1875rem, 100%);
-}
-
-.grid-rows-\[min-content_min-content\] {
-  grid-template-rows: min-content min-content;
 }
 
 .grid-rows-\[auto\] {
@@ -720,10 +708,6 @@ body {
 
 .flex-col {
   flex-direction: column;
-}
-
-.content-between {
-  align-content: space-between;
 }
 
 .items-start {
@@ -767,16 +751,16 @@ body {
   border-radius: 1rem;
 }
 
+.rounded-\[0\.5625rem\] {
+  border-radius: 0.5625rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-\[0\.5625rem\] {
-  border-radius: 0.5625rem;
 }
 
 .border {
@@ -798,15 +782,6 @@ body {
   background-color: hsl(215 100% 97% / var(--tw-bg-opacity));
 }
 
-.bg-transparent {
-  background-color: transparent;
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .bg-primary-LightBlue {
   --tw-bg-opacity: 1;
   background-color: hsl(206 94% 87% / var(--tw-bg-opacity));
@@ -820,6 +795,15 @@ body {
 .bg-primary-PurplishBlue {
   --tw-bg-opacity: 1;
   background-color: hsl(243 100% 62% / var(--tw-bg-opacity));
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .object-cover {
@@ -839,6 +823,11 @@ body {
   padding: 0.9375rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -849,29 +838,9 @@ body {
   padding-bottom: 2.5rem;
 }
 
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 
 .pb-5 {
@@ -886,6 +855,14 @@ body {
   text-align: center;
 }
 
+.text-\[1\.0625rem\] {
+  font-size: 1.0625rem;
+}
+
+.text-\[2rem\] {
+  font-size: 2rem;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -896,32 +873,24 @@ body {
   line-height: 1rem;
 }
 
-.text-\[2rem\] {
-  font-size: 2rem;
-}
-
-.text-\[1\.0625rem\] {
-  font-size: 1.0625rem;
+.font-bold {
+  font-weight: 700;
 }
 
 .font-medium {
   font-weight: 500;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
 .uppercase {
   text-transform: uppercase;
 }
 
-.leading-\[1\] {
-  line-height: 1;
-}
-
 .leading-9 {
   line-height: 2.25rem;
+}
+
+.leading-\[1\] {
+  line-height: 1;
 }
 
 .tracking-\[-0\.025em\] {

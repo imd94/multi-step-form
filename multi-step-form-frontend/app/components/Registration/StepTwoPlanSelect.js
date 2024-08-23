@@ -1,12 +1,23 @@
 import React, { useEffect, useContext } from "react";
+import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
 function StepTwoPlanSelect() {
+    const appState = useContext(StateContext);
     const appDispatch = useContext(DispatchContext);
+    const validationPassed = true;
     
     function handleSubmit(e) {
         e.preventDefault();
-        appDispatch({ type: 'nextStep' });
+        
+        if(validationPassed) {
+            appDispatch({ type: 'nextStep' });
+            
+            // If step is not already completed
+            if(!appState.stepTwo.status) {
+                appDispatch({ type: 'stepTwoStatus', value: 'completed' });
+            }
+        }
     }
 
     function handleStepBack(e) {

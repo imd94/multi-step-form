@@ -1,12 +1,24 @@
 import React, { useEffect, useContext } from "react";
+import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
 function StepOnePersonalInfo() {
+    const appState = useContext(StateContext);
     const appDispatch = useContext(DispatchContext);
+    const validationPassed = true;
 
     function handleSubmit(e) {
         e.preventDefault();
-        appDispatch({ type: 'nextStep' });
+
+        // If validation passed
+        if(validationPassed) {
+            appDispatch({ type: 'nextStep' });
+            
+            // If step is not already completed
+            if(!appState.stepOne.status) {
+                appDispatch({ type: 'stepOneStatus', value: 'completed' });
+            }
+        }
     }
 
     return (

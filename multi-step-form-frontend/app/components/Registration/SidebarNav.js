@@ -12,24 +12,28 @@ function SidebarNav() {
                 stepNum="1"
                 stepTitle="Your info"
                 stepActive={ appState.stepCounter == 1 && true }
+                stepCompleted={ appState.stepOne.status }
             />
 
             <SidebarNavItem 
                 stepNum="2"
                 stepTitle="Select plan"
                 stepActive={ appState.stepCounter == 2 && true  }
+                stepCompleted={ appState.stepTwo.status }
             />
 
             <SidebarNavItem 
                 stepNum="3"
                 stepTitle="Add-ons"
                 stepActive={ appState.stepCounter == 3 && true  }
+                stepCompleted={ appState.stepThree.status }
             />
 
             <SidebarNavItem 
                 stepNum="4"
                 stepTitle="Summary"
-                stepActive={ appState.stepCounter == 4 && true  }
+                stepActive={ ( appState.stepCounter == 4 || appState.stepFour.status) && true  }
+                stepCompleted={ appState.stepFour.status }
             />
         </ul>
     );

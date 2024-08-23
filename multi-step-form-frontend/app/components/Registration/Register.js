@@ -6,6 +6,7 @@ import StepOnePersonalInfo from "./StepOnePersonalInfo";
 import StepTwoPlanSelect from "./StepTwoPlanSelect";
 import StepThreeAddons from "./StepThreeAddons";
 import StepFourSummary from "./StepFourSummary";
+import ThankYou from "./ThankYou";
 
 function Register() {
     const appState = useContext(StateContext);
@@ -30,6 +31,7 @@ function Register() {
                         { appState.stepCounter == 2 && <StepTwoPlanSelect /> }
                         { appState.stepCounter == 3 && <StepThreeAddons /> }
                         { appState.stepCounter == 4 && <StepFourSummary /> }
+                        { ( appState.stepCounter == 5 && appState.stepFour.status ) && <ThankYou /> }
                     </article>
                 </div>
             </div>
