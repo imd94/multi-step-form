@@ -28,6 +28,12 @@ module.exports = {
           "danger": "#F8285A",
           "warning": "#F6C000",
           "info": "#1B84FF"
+        },
+        validation: {
+          danger: {
+            "val-bg": "rgb(254 242 242)",
+            "val-text": "rgb(153 27 27)"
+          }
         }
       },
     },

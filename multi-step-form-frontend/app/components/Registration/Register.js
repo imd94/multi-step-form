@@ -26,7 +26,7 @@ function Register() {
                         </div>
                     </aside>
 
-                    <article className="pt-11 pb-5">
+                    <article className="pt-10 pb-5">
                         { appState.stepCounter == 1 && <StepOnePersonalInfo /> }
                         { appState.stepCounter == 2 && <StepTwoPlanSelect /> }
                         { appState.stepCounter == 3 && <StepThreeAddons /> }
