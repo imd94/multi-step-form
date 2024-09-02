@@ -17,19 +17,19 @@ function StepOnePersonalInfo() {
 
     const originalState = {
         name: {
-            value: '',
+            value: appState.stepOne.data.name,
             hasErrors: false,
             errorMessage: ''
         },
         email: {
-            value: '',
+            value: appState.stepOne.data.email,
             hasErrors: false,
             errorMessage: '',
             isUnique: false,
             checkCount: 0
         },
         phone: {
-            value: '',
+            value: appState.stepOne.data.phone,
             hasErrors: false,
             errorMessage: '',
             isUnique: false,
@@ -162,7 +162,15 @@ function StepOnePersonalInfo() {
 
             // If step is not already completed
             if(!appState.stepOne.status) {
-                appDispatch({ type: 'stepOneStatus', value: 'completed' });
+                appDispatch({ 
+                    type: 'stepOneStatus', 
+                    value: 'completed', 
+                    data: {
+                        name: state.name.value,
+                        email: state.email.value,
+                        phone: state.phone.value
+                    } 
+                });
             }
         }
     }, [state.submitStepCount]);
@@ -190,7 +198,7 @@ function StepOnePersonalInfo() {
                 <form id="stepOneForm" onSubmit={ handleSubmit }>
                     <div className="relative mb-6">
                         <label htmlFor="full_name" className="block text-[0.9375rem] text-primary-MarineBlue mb-[0.3125rem]">Name</label>
-                        <input onChange={ (e) => dispatch({ type: 'validateNameImmediately', value: e.target.value }) } type="text" id="full_name" name="full_name" placeholder="e.g. Stephen King" autoComplete="off" className={`block w-full text-base relative z-[2] text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.name.hasErrors && 'border-primary-StrawberryRed' }`} />
+                        <input onChange={ (e) => dispatch({ type: 'validateNameImmediately', value: e.target.value }) } type="text" id="full_name" name="full_name" placeholder="e.g. Stephen King" autoComplete="off" value={ state.name.value } className={`block w-full text-base relative z-[2] text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.name.hasErrors && 'border-primary-StrawberryRed' }`} />
                         <CSSTransition nodeRef={ validationRef } in={ state.name.hasErrors } timeout={ 150 } classNames={ 'liveValidateMessage' }>
                             { (cssBlock) => (
                                 <span ref={ validationRef } className={`block w-full rounded-t-lg text-[0.8125rem] text-validation-danger-val-text bg-validation-danger-val-bg pt-2 pb-3.5 px-[0.9375rem] font-medium absolute bottom-[0] left-0 z-[1] tracking-tight liveValidateMessage`} style={{ ...transitionStyles[cssBlock] }}>{ state.name.errorMessage }</span>
@@ -200,7 +208,7 @@ function StepOnePersonalInfo() {
 
                     <div className="relative mb-6">
                         <label htmlFor="email" className="block text-[0.9375rem] text-primary-MarineBlue mb-[0.3125rem]">Email Address</label>
-                        <input onChange={ (e) => dispatch({ type: 'validateEmailImmediately', value: e.target.value }) } type="text" id="email" name="email" placeholder="e.g. stephenking@lorem.com" autoComplete="off" className={`block w-full relative z-[2] text-base text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.email.hasErrors && 'border-primary-StrawberryRed' }`} />
+                        <input onChange={ (e) => dispatch({ type: 'validateEmailImmediately', value: e.target.value }) } type="text" id="email" name="email" placeholder="e.g. stephenking@lorem.com" autoComplete="off" value={ state.email.value } className={`block w-full relative z-[2] text-base text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.email.hasErrors && 'border-primary-StrawberryRed' }`} />
                         <CSSTransition nodeRef={ validationRef } in={ state.email.hasErrors } timeout={ 150 } classNames={ 'liveValidateMessage' }>
                             { (cssBlock) => (
                                 <span ref={ validationRef } className={`block w-full rounded-t-lg text-[0.8125rem] text-validation-danger-val-text bg-validation-danger-val-bg pt-2 pb-3.5 px-[0.9375rem] font-medium absolute bottom-[0] left-0 z-[1] tracking-tight liveValidateMessage`} style={{ ...transitionStyles[cssBlock] }}>{ state.email.errorMessage }</span>
@@ -210,7 +218,7 @@ function StepOnePersonalInfo() {
 
                     <div className="relative mb-6">
                         <label htmlFor="phone_number" className="block text-[0.9375rem] text-primary-MarineBlue mb-[0.3125rem]">Phone Number</label>
-                        <input onChange={ (e) => dispatch({ type: 'validatePhoneImmediately', value: e.target.value }) } type="tel" id="phone_number" name="phone_number" placeholder="e.g. +1 234 567 890" autoComplete="off" className={`block w-full relative z-[2] text-base text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.phone.hasErrors && 'border-primary-StrawberryRed' }`} />
+                        <input onChange={ (e) => dispatch({ type: 'validatePhoneImmediately', value: e.target.value }) } type="tel" id="phone_number" name="phone_number" placeholder="e.g. +1 234 567 890" autoComplete="off" value={ state.phone.value } className={`block w-full relative z-[2] text-base text-primary-MarineBlue font-medium border border-app_neutral-LightGray rounded-lg py-[0.6875rem] px-[0.9375rem] placeholder:text-app_neutral-CoolGray placeholder:font-medium focus:border-primary-PurplishBlue focus-visible:border-primary-PurplishBlue focus-visible:outline-none hover:cursor-pointer hover:border-primary-PurplishBlue transition ease-in-out duration-300 ${ state.phone.hasErrors && 'border-primary-StrawberryRed' }`} />
                         <CSSTransition nodeRef={ validationRef } in={ state.phone.hasErrors } timeout={ 150 } classNames={ 'liveValidateMessage' }>
                             { (cssBlock) => (
                                 <span ref={ validationRef } className={`block w-full rounded-t-lg text-[0.8125rem] text-validation-danger-val-text bg-validation-danger-val-bg pt-2 pb-3.5 px-[0.9375rem] font-medium absolute bottom-[0] left-0 z-[1] tracking-tight liveValidateMessage`} style={{ ...transitionStyles[cssBlock] }}>{ state.phone.errorMessage }</span>

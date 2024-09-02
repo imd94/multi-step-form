@@ -17,7 +17,12 @@ import Register from './components/Registration/Register';
 function App(props) {
     const originalState = {
         stepOne: {
-            status: Boolean(localStorage.getItem('stepOneStatus'))
+            status: Boolean(localStorage.getItem('stepOneStatus')),
+            data: JSON.parse(localStorage.getItem('stepOneData')) || {
+                name: '',
+                email: '',
+                phone: ''
+            }
         },
         stepTwo: {
             status: Boolean(localStorage.getItem('stepTwoStatus'))
@@ -47,6 +52,7 @@ function App(props) {
                 return;
             case 'stepOneStatus':
                 draft.stepOne.status = action.value;
+                draft.stepOne.data = action.data;
                 return;
             case 'stepTwoStatus':
                 draft.stepTwo.status = action.value;
@@ -72,6 +78,7 @@ function App(props) {
             if(!state.previous) {
                 if(state.stepOne.status) {
                     localStorage.setItem('stepNum', 2);
+                    localStorage.setItem('stepOneData', JSON.stringify(state.stepOne.data));
                 }
 
                 if(state.stepTwo.status) {
