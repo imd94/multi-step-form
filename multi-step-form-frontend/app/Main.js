@@ -54,6 +54,9 @@ function App(props) {
                 draft.stepOne.status = action.value;
                 draft.stepOne.data = action.data;
                 return;
+            case 'stepOneData':
+                draft.stepOne.data = action.data;
+                return;
             case 'stepTwoStatus':
                 draft.stepTwo.status = action.value;
                 return;

@@ -686,12 +686,20 @@ body {
   margin-left: auto;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
 
 .flex {
   display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
 }
 
 .grid {
@@ -746,6 +754,22 @@ body {
   grid-template-columns: minmax(13.75rem, 17.1875rem) minmax(17.1875rem, 100%);
 }
 
+.grid-cols-\[1fr_1fr_1fr\] {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-cols-\[calc\(100\%_\/_3\)_calc\(100\%_\/_3\)_calc\(100\%_\/_3\)\] {
+  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+}
+
+.grid-cols-\[calc\(\(100\%_\/_3\)_-_12px\)_calc\(\(100\%_\/_3\)_-_12px\)_calc\(\(100\%_\/_3\)_-_12px\)\] {
+  grid-template-columns: calc((100% / 3) - 12px) calc((100% / 3) - 12px) calc((100% / 3) - 12px);
+}
+
+.grid-cols-\[calc\(\(100\%_\/_3\)_-_\(\(1\.125rem_\*_2\)_\/_3\)\)_calc\(\(100\%_\/_3\)_-_\(\(1\.125rem_\*_2\)_\/_3\)\)_calc\(\(100\%_\/_3\)_-_\(\(1\.125rem_\*_2\)_\/_3\)\)\] {
+  grid-template-columns: calc((100% / 3) - ((1.125rem * 2) / 3)) calc((100% / 3) - ((1.125rem * 2) / 3)) calc((100% / 3) - ((1.125rem * 2) / 3));
+}
+
 .grid-rows-\[auto\] {
   grid-template-rows: auto;
 }
@@ -772,6 +796,10 @@ body {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-\[1\.125rem\] {
+  gap: 1.125rem;
 }
 
 .gap-x-4 {
@@ -809,6 +837,10 @@ body {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[\.5rem\] {
+  border-radius: .5rem;
 }
 
 .rounded-t-lg {
@@ -884,6 +916,10 @@ body {
 
 .p-\[0\.9375rem\] {
   padding: 0.9375rem;
+}
+
+.p-\[\] {
+  padding: ;
 }
 
 .px-6 {
@@ -1083,6 +1119,12 @@ body {
   transition-duration: 150ms;
 }
 
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -1139,4 +1181,19 @@ body {
 .focus-visible\:outline-none:focus-visible {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.peer\/advanced:checked ~ .peer-checked\/advanced\:border-primary-PurplishBlue {
+  --tw-border-opacity: 1;
+  border-color: hsl(243 100% 62% / var(--tw-border-opacity));
+}
+
+.peer\/arcade:checked ~ .peer-checked\/arcade\:border-primary-PurplishBlue {
+  --tw-border-opacity: 1;
+  border-color: hsl(243 100% 62% / var(--tw-border-opacity));
+}
+
+.peer\/pro:checked ~ .peer-checked\/pro\:border-primary-PurplishBlue {
+  --tw-border-opacity: 1;
+  border-color: hsl(243 100% 62% / var(--tw-border-opacity));
 }
