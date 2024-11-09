@@ -25,10 +25,15 @@ function App(props) {
             }
         },
         stepTwo: {
-            status: Boolean(localStorage.getItem('stepTwoStatus'))
+            status: Boolean(localStorage.getItem('stepTwoStatus')),
+            data: JSON.parse(localStorage.getItem('stepTwoData')) || {
+                plan: 'arcade',
+                billingType: false
+            }
         },
         stepThree: {
-            status: Boolean(localStorage.getItem('stepThreeStatus'))
+            status: Boolean(localStorage.getItem('stepThreeStatus')),
+            data: JSON.parse(localStorage.getItem('stepThreeData'))
         },
         stepFour: {
             status: Boolean(localStorage.getItem('stepFourStatus'))
@@ -59,9 +64,17 @@ function App(props) {
                 return;
             case 'stepTwoStatus':
                 draft.stepTwo.status = action.value;
+                draft.stepTwo.data = action.data;
+                return;
+            case 'stepTwoData':
+                draft.stepTwo.data = action.data;
                 return;
             case 'stepThreeStatus':
                 draft.stepThree.status = action.value;
+                draft.stepThree.data = action.data;
+                return;
+            case 'stepThreeData':
+                draft.stepThree.data = action.data;
                 return;
             case 'stepFourStatus':
                 draft.stepFour.status = action.value;
@@ -86,10 +99,12 @@ function App(props) {
 
                 if(state.stepTwo.status) {
                     localStorage.setItem('stepNum', 3);
+                    localStorage.setItem('stepTwoData', JSON.stringify(state.stepTwo.data));
                 }
                 
                 if(state.stepThree.status) {
                     localStorage.setItem('stepNum', 4);
+                    localStorage.setItem('stepThreeData', JSON.stringify(state.stepThree.data));
                 }
 
                 if(state.stepFour.status) {

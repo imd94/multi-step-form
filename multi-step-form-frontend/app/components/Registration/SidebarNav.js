@@ -18,14 +18,14 @@ function SidebarNav() {
             <SidebarNavItem 
                 stepNum="2"
                 stepTitle="Select plan"
-                stepActive={ appState.stepCounter == 2 && true  }
+                stepActive={ appState.stepCounter == 2 && true }
                 stepCompleted={ appState.stepTwo.status }
             />
 
             <SidebarNavItem 
                 stepNum="3"
                 stepTitle="Add-ons"
-                stepActive={ appState.stepCounter == 3 && true  }
+                stepActive={ appState.stepCounter == 3 && true }
                 stepCompleted={ appState.stepThree.status }
             />
 

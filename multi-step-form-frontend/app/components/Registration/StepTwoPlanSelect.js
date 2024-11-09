@@ -5,29 +5,45 @@ import DispatchContext from "../../DispatchContext";
 function StepTwoPlanSelect() {
     const appState = useContext(StateContext);
     const appDispatch = useContext(DispatchContext);
-    const [selectedPlan, setSelectedPlan] = useState('arcade');
-    const [isBillingChecked, setIsBillingChecked] = useState(false);
-    const validationPassed = true;
-
-    console.log(isBillingChecked);
+    const [selectedPlan, setSelectedPlan] = useState(appState.stepTwo.data.plan);
+    const [isBillingChecked, setIsBillingChecked] = useState(appState.stepTwo.data.billingType); // monthly is default
+    const [submitStepCount, setSubmitStepCount] = useState(0);
     
     function handleSubmit(e) {
         e.preventDefault();
-        
-        if(validationPassed) {
-            appDispatch({ type: 'nextStep' });
-            
-            // If step is not already completed
-            if(!appState.stepTwo.status) {
-                appDispatch({ type: 'stepTwoStatus', value: 'completed' });
-            }
-        }
+
+        setSubmitStepCount(prev => prev + 1);
     }
 
     function handleStepBack(e) {
         e.preventDefault();
         appDispatch({ type: 'prevStep' });
     }
+
+    useEffect(() => {
+        if(submitStepCount) {
+            appDispatch({ type: 'nextStep' });
+
+            if(!appState.stepTwo.status) {
+                appDispatch({ 
+                    type: 'stepTwoStatus', 
+                    value: 'completed', 
+                    data: {
+                        plan: selectedPlan,
+                        billingType: isBillingChecked
+                    } 
+                });
+            } else {
+                appDispatch({ 
+                    type: 'stepTwoData', 
+                    data: {
+                        plan: selectedPlan,
+                        billingType: isBillingChecked
+                    } 
+                });
+            }
+        }
+    }, [submitStepCount]);
 
     return (
         <div className="max-w-[28.125rem] h-full mx-auto relative">
