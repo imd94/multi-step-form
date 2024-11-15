@@ -27,7 +27,10 @@ function App(props) {
         stepTwo: {
             status: Boolean(localStorage.getItem('stepTwoStatus')),
             data: JSON.parse(localStorage.getItem('stepTwoData')) || {
-                plan: 'arcade',
+                plan: {
+                    name: 'arcade',
+                    price: 9
+                },
                 billingType: false
             }
         },

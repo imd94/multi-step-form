@@ -117,7 +117,7 @@ function StepThreeAddons() {
                     <input onChange={ handleAddonSelect } checked={ state.addonOne.selected } className="peer/online-service-addon hidden" type="checkbox" id="online-service-addon" name="online-service" value={ state.addonOne.name } />
                     <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/online-service-addon:border-primary-PurplishBlue peer-checked/online-service-addon:bg-app_neutral-Alabaster cursor-pointer" htmlFor="online-service-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonOne.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
-                            <svg className={ `flex transition-all ${state.addonOne.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" stroke-width="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
+                            <svg className={ `flex transition-all ${state.addonOne.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
 
                         <span>
@@ -133,7 +133,7 @@ function StepThreeAddons() {
                     <input onChange={ handleAddonSelect } checked={ state.addonTwo.selected } className="peer/larger-storage-addon hidden" type="checkbox" id="larger-storage-addon" name="larger-storage" value={ state.addonTwo.name } />
                     <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/larger-storage-addon:border-primary-PurplishBlue peer-checked/larger-storage-addon:bg-app_neutral-Alabaster cursor-pointer" htmlFor="larger-storage-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonTwo.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
-                            <svg className={ `flex transition-all ${state.addonTwo.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" stroke-width="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
+                            <svg className={ `flex transition-all ${state.addonTwo.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
 
                         <span>
@@ -149,7 +149,7 @@ function StepThreeAddons() {
                     <input onChange={ handleAddonSelect } checked={ state.addonThree.selected } className="peer/customizable-profile-addon hidden" type="checkbox" id="customizable-profile-addon" name="customizable-profile" value={ state.addonThree.name } />
                     <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/customizable-profile-addon:border-primary-PurplishBlue peer-checked/customizable-profile-addon:bg-app_neutral-Alabaster cursor-pointer" htmlFor="customizable-profile-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonThree.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
-                            <svg className={ `flex transition-all ${state.addonThree.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" stroke-width="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
+                            <svg className={ `flex transition-all ${state.addonThree.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
 
                         <span>
