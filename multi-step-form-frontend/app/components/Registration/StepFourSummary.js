@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useImmer } from "use-immer";
+import Axios from 'axios';
 import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
@@ -13,7 +14,7 @@ function StepFourSummary() {
         plan: appState.stepTwo.data,
         billing: appState.billingYearly,
         addons: appState.stepThree.data,
-        total: ''
+        submitCounter: 0
     });
 
     function handleSubmit(e) {
@@ -21,8 +22,11 @@ function StepFourSummary() {
 
         // If step is not already completed
         if(!appState.stepFour.status) {
-            appDispatch({ type: 'nextStep' });
-            appDispatch({ type: 'stepFourStatus', value: 'completed' });
+            setData((draft) => {
+                draft.submitCounter++;
+            });
+            /* appDispatch({ type: 'nextStep' });
+            appDispatch({ type: 'stepFourStatus', value: 'completed' }); */
         }
     }
 
@@ -90,6 +94,41 @@ function StepFourSummary() {
             });
         }
     }, [appState.billingYearly]);
+
+    console.log(data.addons);
+
+    useEffect(() => {
+        if(data.submitCounter) {
+            const ourRequest = Axios.CancelToken.source();
+
+            async function createNewUser() {
+                const finishedData = {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone,
+                    plan: data.plan,
+                    billing: data.billing,
+                    addons: data.addons,
+                    totalPrice: calcTotal()
+                }
+
+                const cancelToken = { cancelToken: ourRequest.token };
+
+                try {
+                    const response = await Axios.post('/register', finishedData, cancelToken);
+                    console.log(response);
+                } catch(err) {
+                    console.log(err);
+                }
+            }
+
+            createNewUser();
+
+            return () => {
+                ourRequest.cancel();
+            }
+        }
+    }, [data.submitCounter]);
 
     return (
         <div className="max-w-[28.125rem] mx-auto">
