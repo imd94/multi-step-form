@@ -26,13 +26,7 @@ function App(props) {
         },
         stepTwo: {
             status: Boolean(localStorage.getItem('stepTwoStatus')),
-            data: JSON.parse(localStorage.getItem('stepTwoData')) || {
-                plan: {
-                    name: 'arcade',
-                    price: 9
-                },
-                billingType: false
-            }
+            data: JSON.parse(localStorage.getItem('stepTwoData'))
         },
         stepThree: {
             status: Boolean(localStorage.getItem('stepThreeStatus')),
@@ -42,6 +36,7 @@ function App(props) {
             status: Boolean(localStorage.getItem('stepFourStatus'))
         },
         stepCounter: localStorage.getItem('stepNum') || 1,
+        billingYearly: Boolean(localStorage.getItem('billingYearly')) || '',
         previous: false
     }
 
@@ -57,6 +52,9 @@ function App(props) {
                 return;
             case 'updateCurrentStep':
                 draft.stepCounter = action.value;
+                return;
+            case 'billingType':
+                draft.billingYearly = action.value;
                 return;
             case 'stepOneStatus':
                 draft.stepOne.status = action.value;
@@ -129,6 +127,14 @@ function App(props) {
             } */
         }
     }, [state.stepCounter]);
+
+    useEffect(() => {
+        if(state.billingYearly) {
+            localStorage.setItem('billingYearly', state.billingYearly);
+        } else {
+            localStorage.setItem('billingYearly', '');
+        }
+    }, [state.billingYearly, state.stepCounter]);
 
     return (
         <StateContext.Provider value={state}>

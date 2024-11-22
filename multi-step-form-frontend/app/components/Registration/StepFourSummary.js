@@ -1,17 +1,19 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useImmer } from "use-immer";
 import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
 function StepFourSummary() {
     const appState = useContext(StateContext);
     const appDispatch = useContext(DispatchContext);
-    const [data, setData] = useState({
+    const [data, setData] = useImmer({
         name: appState.stepOne.data.name,
         email: appState.stepOne.data.email,
         phone: appState.stepOne.data.phone,
-        plan: appState.stepTwo.data.plan,
-        billing: !appState.stepTwo.data.billingType ? 'monthly' : 'yearly',
-        addons: appState.stepThree.data
+        plan: appState.stepTwo.data,
+        billing: appState.billingYearly,
+        addons: appState.stepThree.data,
+        total: ''
     });
 
     function handleSubmit(e) {
@@ -34,6 +36,61 @@ function StepFourSummary() {
         appDispatch({ type: 'updateCurrentStep', value: 2 });
     }
 
+    function calcTotal() {
+        let totalPrice = Object.values(data.addons).reduce((total, addon) => total + addon.price, 0);
+        totalPrice = totalPrice * 1 + data.plan.price * 1;
+
+        return totalPrice;
+    }
+
+    useEffect(() => {
+        if(appState.billingYearly) {
+            setData((draft) => {
+                if(draft.plan.name === 'arcade') {
+                    draft.plan.price = 90;
+                } else if(draft.plan.name === 'advanced') {
+                    draft.plan.price = 120;
+                } else if(draft.plan.name === 'pro') {
+                    draft.plan.price = 150;
+                }
+
+                if(draft.addons.addonOne) {
+                    draft.addons.addonOne.price = 10;
+                }
+
+                if(draft.addons.addonTwo) {
+                    draft.addons.addonTwo.price = 20;
+                }
+
+                if(draft.addons.addonThree) {
+                    draft.addons.addonThree.price = 20;
+                }
+            });
+        } else {
+            setData((draft) => {
+                if(draft.plan.name === 'arcade') {
+                    draft.plan.price = 9;
+                } else if(draft.plan.name === 'advanced') {
+                    draft.plan.price = 12;
+                } else if(draft.plan.name === 'pro') {
+                    draft.plan.price = 15;
+                }
+
+                if(draft.addons.addonOne) {
+                    draft.addons.addonOne.price = 1;
+                }
+
+                if(draft.addons.addonTwo) {
+                    draft.addons.addonTwo.price = 2;
+                }
+
+                if(draft.addons.addonThree) {
+                    draft.addons.addonThree.price = 2;
+                }
+            });
+        }
+    }, [appState.billingYearly]);
+
     return (
         <div className="max-w-[28.125rem] mx-auto">
             <header className="mb-9">
@@ -46,22 +103,27 @@ function StepFourSummary() {
                     <li className="flex items-center justify-between pb-6 mb-5 border-b border-b-app_neutral-LightGray">
                         <div>
                             <span className="block capitalize text-primary-MarineBlue font-medium mb-[.1rem]">
-                                { data.plan.name } {' '} ({ data.billing })
+                                { data.plan.name } {' '} ({ !data.billing ? 'Monthly' : 'Yearly' })
                             </span>
 
                             <a onClick={ handleStepChange } href="#" className="block text-app_neutral-CoolGray text-sm underline">Change</a>
                         </div>
 
-                        <span className="text-primary-MarineBlue font-medium">${ data.plan.price }/{ data.billing === 'monthly' ? 'mo' : 'yr' }</span>
+                        <span className="text-primary-MarineBlue font-medium">${ data.plan.price }/{ !data.billing ? 'mo' : 'yr' }</span>
                     </li>
 
                     { Object.values(data.addons).map((addon, index) => (
-                        <li className="flex items-center justify-between text-sm mb-5" key={ index }>
+                        <li className={`flex items-center justify-between text-sm ${index + 1 != Object.keys(data.addons).length ? 'mb-5' : ''}`} key={ index }>
                             <span className="text-app_neutral-CoolGray">{ addon.name }</span>
-                            <span className="text-primary-MarineBlue">+${ addon.price }/{ data.billing === 'monthly' ? 'mo' : 'yr' }</span>
+                            <span className="text-primary-MarineBlue">+${ addon.price }/{ !data.billing ? 'mo' : 'yr' }</span>
                         </li>
                     )) }
                 </ul>
+
+                <div className="flex items-end justify-between text-sm mb-10 px-6">
+                    <span className="text-app_neutral-CoolGray">Total (per { !data.billing ? 'month' : 'year' })</span>
+                    <span className="text-primary-PurplishBlue text-lg font-bold">+${ calcTotal() }/{ !data.billing ? 'mo' : 'yr' }</span>
+                </div>
             </form>
 
             <footer className="flex justify-between">

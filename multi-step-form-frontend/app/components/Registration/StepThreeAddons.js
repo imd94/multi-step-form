@@ -10,19 +10,19 @@ function StepThreeAddons() {
         addonOne: {
             name: 'Online service',
             description: 'Access to multiplayer games',
-            price: !appState.stepTwo.data.billingType ? 1 : 10,
+            price: 1,
             selected: appState.stepThree.data?.addonOne?.selected || false
         },
         addonTwo: {
             name: 'Larger storage',
             description: 'Extra 1TB of cloud save',
-            price: !appState.stepTwo.data.billingType ? 2 : 20,
+            price: 2,
             selected: appState.stepThree.data?.addonTwo?.selected || false
         },
         addonThree: {
             name: 'Customizable Profile',
             description: 'Custom theme on your profile',
-            price: !appState.stepTwo.data.billingType ? 2 : 20,
+            price: 2,
             selected: appState.stepThree.data?.addonThree?.selected || false
         },
         stepValidationError: false, 
@@ -69,6 +69,20 @@ function StepThreeAddons() {
                 return;
         }
     }
+
+    useEffect(() => {
+        setState((draft) => {
+            if(appState.billingYearly) {
+                draft.addonOne.price = 10;
+                draft.addonTwo.price = 20;
+                draft.addonThree.price = 20;
+            } else {
+                draft.addonOne.price = 1;
+                draft.addonTwo.price = 2;
+                draft.addonThree.price = 2;
+            }
+        });
+    }, [appState.billingYearly]);
 
     useEffect(() => {
         if(state.submitStepCount) {
@@ -126,7 +140,7 @@ function StepThreeAddons() {
                         </span>
 
                         <span className="block text-sm text-primary-PurplishBlue">
-                            +${ state.addonOne.price }/{ `${!appState.stepTwo.data.billingType ? 'mo' : 'yr'}` }
+                            +${ state.addonOne.price }/{ `${!appState.billingYearly ? 'mo' : 'yr'}` }
                         </span>
                     </label>
 
@@ -142,7 +156,7 @@ function StepThreeAddons() {
                         </span>
 
                         <span className="block text-sm text-primary-PurplishBlue">
-                            +${ state.addonTwo.price }/{ `${!appState.stepTwo.data.billingType ? 'mo' : 'yr'}` }
+                            +${ state.addonTwo.price }/{ `${!appState.billingYearly ? 'mo' : 'yr'}` }
                         </span>
                     </label>
 
@@ -158,7 +172,7 @@ function StepThreeAddons() {
                         </span>
 
                         <span className="block text-sm text-primary-PurplishBlue">
-                            +${ state.addonThree.price }/{ `${!appState.stepTwo.data.billingType ? 'mo' : 'yr'}` }
+                            +${ state.addonThree.price }/{ `${!appState.billingYearly ? 'mo' : 'yr'}` }
                         </span>
                     </label>
 
