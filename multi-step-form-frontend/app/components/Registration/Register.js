@@ -26,12 +26,12 @@ function Register() {
                         </div>
                     </aside>
 
-                    <article className="pt-10 pb-5">
+                    <article className={`${!appState.regCompleted ? 'pt-10 pb-5' : ''} `}>
                         { appState.stepCounter == 1 && <StepOnePersonalInfo /> }
                         { appState.stepCounter == 2 && <StepTwoPlanSelect /> }
                         { appState.stepCounter == 3 && <StepThreeAddons /> }
-                        { appState.stepCounter == 4 && <StepFourSummary /> }
-                        { ( appState.stepCounter == 5 && appState.stepFour.status ) && <ThankYou /> }
+                        { (appState.stepCounter == 4 || appState.regCompleted) && <StepFourSummary /> }
+                        {/* { ( appState.stepFour.status && appState.regCompleted ) && <ThankYou /> } */}
                     </article>
                 </div>
             </div>

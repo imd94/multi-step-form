@@ -37,7 +37,8 @@ function App(props) {
         },
         stepCounter: localStorage.getItem('stepNum') || 1,
         billingYearly: Boolean(localStorage.getItem('billingYearly')) || '',
-        previous: false
+        previous: false,
+        regCompleted: false
     }
 
     function ourReducer(draft, action) {
@@ -80,6 +81,9 @@ function App(props) {
             case 'stepFourStatus':
                 draft.stepFour.status = action.value;
                 return;
+            case 'registrationCompleted':
+                draft.regCompleted = true;
+                return;
         }
     }
 
@@ -107,24 +111,7 @@ function App(props) {
                     localStorage.setItem('stepNum', 4);
                     localStorage.setItem('stepThreeData', JSON.stringify(state.stepThree.data));
                 }
-
-                if(state.stepFour.status) {
-                    localStorage.setItem('stepNum', 5);
-                }
             }
-
-            /* if(state.stepCounter == 5) {
-                localStorage.removeItem('stepOneStatus');
-                localStorage.removeItem('stepTwoStatus');
-                localStorage.removeItem('stepThreeStatus');
-                localStorage.removeItem('stepFourStatus');
-                localStorage.removeItem('stepNum');
-            } */
-
-            // Save every step on next in local storage
-            /* if(!state.previous) {
-                localStorage.setItem('stepNum', state.stepCounter);
-            } */
         }
     }, [state.stepCounter]);
 
@@ -135,6 +122,20 @@ function App(props) {
             localStorage.setItem('billingYearly', '');
         }
     }, [state.billingYearly, state.stepCounter]);
+
+    useEffect(() => {
+        if(state.regCompleted) {
+            localStorage.removeItem('stepOneStatus');
+            localStorage.removeItem('stepTwoStatus');
+            localStorage.removeItem('stepThreeStatus');
+            localStorage.removeItem('stepFourStatus');
+            localStorage.removeItem('stepOneData');
+            localStorage.removeItem('stepTwoData');
+            localStorage.removeItem('stepThreeData');
+            localStorage.removeItem('billingYearly');
+            localStorage.removeItem('stepNum');
+        }
+    }, [state.regCompleted]);
 
     return (
         <StateContext.Provider value={state}>

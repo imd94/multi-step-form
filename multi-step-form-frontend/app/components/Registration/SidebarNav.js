@@ -32,7 +32,7 @@ function SidebarNav() {
             <SidebarNavItem 
                 stepNum="4"
                 stepTitle="Summary"
-                stepActive={ ( appState.stepCounter == 4 || appState.stepFour.status) && true  }
+                stepActive={ ( appState.stepCounter == 4 || appState.stepFour.status || appState.regCompleted) && true  }
                 stepCompleted={ appState.stepFour.status }
             />
         </ul>

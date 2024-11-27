@@ -108,6 +108,10 @@ const userSchema = new mongoose.Schema({
     totalPrice: {
         type: Number,
         required: [true, 'A total price must be calculated!'],
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
     }
 });
 

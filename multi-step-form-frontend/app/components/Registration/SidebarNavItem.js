@@ -11,7 +11,7 @@ function SidebarNavItem(props) {
             className={`
             flex items-center gap-x-4 cursor-pointer
             ${ !props.stepCompleted && localStorage.getItem('stepNum') != props.stepNum ? 'pointer-events-none' : '' }
-            ${ appState.stepFour.status && 'pointer-events-none' }
+            ${ appState.regCompleted && 'pointer-events-none' }
         `}>
             <div className={`flex items-center justify-center text-center w-[2.1875rem] h-[2.1875rem] border rounded-full ${ props.stepActive ? 'border-primary-LightBlue text-primary-MarineBlue bg-primary-LightBlue' : 'border-app_neutral-LightGray text-white bg-transparent' }`}>
                 { !props.stepCompleted ? props.stepNum :

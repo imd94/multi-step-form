@@ -4,6 +4,8 @@ import Axios from 'axios';
 import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
+import ThankYou from "./ThankYou";
+
 function StepFourSummary() {
     const appState = useContext(StateContext);
     const appDispatch = useContext(DispatchContext);
@@ -25,8 +27,10 @@ function StepFourSummary() {
             setData((draft) => {
                 draft.submitCounter++;
             });
-            /* appDispatch({ type: 'nextStep' });
-            appDispatch({ type: 'stepFourStatus', value: 'completed' }); */
+            
+            if(appState.regCompleted) {
+                appDispatch({ type: 'stepFourStatus', value: 'completed' });
+            }
         }
     }
 
@@ -95,8 +99,6 @@ function StepFourSummary() {
         }
     }, [appState.billingYearly]);
 
-    console.log(data.addons);
-
     useEffect(() => {
         if(data.submitCounter) {
             const ourRequest = Axios.CancelToken.source();
@@ -109,13 +111,17 @@ function StepFourSummary() {
                     plan: data.plan,
                     billing: data.billing,
                     addons: data.addons,
-                    totalPrice: calcTotal()
+                    totalPrice: calcTotal(),
+                    createdAt: new Date()
                 }
 
                 const cancelToken = { cancelToken: ourRequest.token };
 
                 try {
                     const response = await Axios.post('/register', finishedData, cancelToken);
+                    if(response.data.status === 'success') {
+                        appDispatch({ type: 'registrationCompleted' });
+                    }
                     console.log(response);
                 } catch(err) {
                     console.log(err);
@@ -129,6 +135,12 @@ function StepFourSummary() {
             }
         }
     }, [data.submitCounter]);
+
+    if(appState.regCompleted) {
+        return (
+            <ThankYou />
+        )
+    }
 
     return (
         <div className="max-w-[28.125rem] mx-auto">
