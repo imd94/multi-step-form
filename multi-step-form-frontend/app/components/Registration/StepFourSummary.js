@@ -143,41 +143,41 @@ function StepFourSummary() {
     }
 
     return (
-        <div className="max-w-[28.125rem] mx-auto">
-            <header className="mb-9">
-                <h2 className="text-[2rem] leading-9 text-primary-MarineBlue font-bold mb-3">Finishing up</h2>
+        <div className="max-w-[28.125rem] h-full mx-auto relative max-xs:max-w-full max-xs:mx-0 max-xs:bg-white max-xs:px-6 max-xs:pt-8 max-xs:pb-8 max-xs:rounded-xl">
+            <header className="mb-9 max-xs:mb-6">
+                <h2 className="text-[2rem] leading-9 text-primary-MarineBlue font-bold mb-3 max-xs:text-[1.6rem] max-xs:mb-2">Finishing up</h2>
                 <p className="text-base text-app_neutral-CoolGray">Double-check everything looks OK before confirming.</p>
             </header>
 
             <form id="stepThreeForm" onSubmit={ handleSubmit }>
-                <ul className="m-0 mb-8 p-6 bg-app_neutral-Alabaster rounded-lg">
-                    <li className="flex items-center justify-between pb-6 mb-5 border-b border-b-app_neutral-LightGray">
+                <ul className="m-0 mb-8 p-6 bg-app_neutral-Alabaster rounded-lg max-xs:py-5 max-xs:px-4 max-xs:pt-4 max-xs:mb-5">
+                    <li className="flex items-center justify-between pb-6 mb-5 border-b border-b-app_neutral-LightGray max-xs:pb-4 max-xs:mb-4">
                         <div>
-                            <span className="block capitalize text-primary-MarineBlue font-medium mb-[.1rem]">
+                            <span className="block capitalize text-primary-MarineBlue font-medium mb-[.1rem] max-xs:text-sm max-xs:mb-0">
                                 { data.plan.name } {' '} ({ !data.billing ? 'Monthly' : 'Yearly' })
                             </span>
 
                             <a onClick={ handleStepChange } href="#" className="block text-app_neutral-CoolGray text-sm underline">Change</a>
                         </div>
 
-                        <span className="text-primary-MarineBlue font-medium">${ data.plan.price }/{ !data.billing ? 'mo' : 'yr' }</span>
+                        <span className="text-primary-MarineBlue font-medium max-xs:text-sm max-xs:font-bold">${ data.plan.price }/{ !data.billing ? 'mo' : 'yr' }</span>
                     </li>
 
                     { Object.values(data.addons).map((addon, index) => (
-                        <li className={`flex items-center justify-between text-sm ${index + 1 != Object.keys(data.addons).length ? 'mb-5' : ''}`} key={ index }>
+                        <li className={`flex items-center justify-between text-sm ${index + 1 != Object.keys(data.addons).length ? 'mb-5 max-xs:mb-3' : ''}`} key={ index }>
                             <span className="text-app_neutral-CoolGray">{ addon.name }</span>
                             <span className="text-primary-MarineBlue">+${ addon.price }/{ !data.billing ? 'mo' : 'yr' }</span>
                         </li>
                     )) }
                 </ul>
 
-                <div className="flex items-end justify-between text-sm mb-10 px-6">
+                <div className="flex items-end justify-between text-sm mb-10 px-6 max-sm:items-center">
                     <span className="text-app_neutral-CoolGray">Total (per { !data.billing ? 'month' : 'year' })</span>
                     <span className="text-primary-PurplishBlue text-lg font-bold">+${ calcTotal() }/{ !data.billing ? 'mo' : 'yr' }</span>
                 </div>
             </form>
 
-            <footer className="flex justify-between">
+            <footer className="flex justify-between absolute bottom-0 right-0 w-full max-xs:fixed max-xs:bottom-0 max-xs:left-0 max-xs:bg-white max-xs:p-4">
                 <button onClick={ handleStepBack } className="text-[1.0625rem] tracking-[-0.025em] font-medium text-app_neutral-CoolGray bg-transparent rounded-[0.5625rem] px-6 py-3 ml-[-1.5rem]">Go Back</button>
                 <button type="submit" form="stepThreeForm" className="text-[1.0625rem] tracking-[-0.025em] font-medium text-white bg-primary-MarineBlue rounded-[0.5625rem] px-6 py-3">Next Step</button>
             </footer>

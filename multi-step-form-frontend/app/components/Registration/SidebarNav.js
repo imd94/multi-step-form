@@ -7,7 +7,7 @@ function SidebarNav() {
     const appState = useContext(StateContext); 
 
     return (
-        <ul className="list-none p-0 m-0 flex flex-col items-start gap-y-8">
+        <ul className="list-none p-0 m-0 flex flex-col items-start gap-y-8 max-xs:flex-row gap-4 justify-center">
             <SidebarNavItem 
                 stepNum="1"
                 stepTitle="Your info"

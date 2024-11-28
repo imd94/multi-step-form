@@ -18,7 +18,7 @@ function SidebarNavItem(props) {
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill={ !props.stepActive ? '#fff' : '#02295a' }><path d="M379.33-244 154-469.33 201.67-517l177.66 177.67 378.34-378.34L805.33-670l-426 426Z"/></svg> }
             </div>
 
-            <div className="flex flex-col items-start gap-y-2 uppercase">
+            <div className="flex flex-col items-start gap-y-2 uppercase max-xs:hidden">
                 <span className="block leading-[1] text-xs text-app_neutral-LightGray">Step { props.stepNum }</span>
                 <span className="block leading-[1] text-sm font-medium text-white">{ props.stepTitle }</span>
             </div>
