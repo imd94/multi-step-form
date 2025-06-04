@@ -30,4 +30,8 @@
     body {
         @apply font-Ubuntu;
     }
+
+    body:has(.static-preload-content) {
+      @apply bg-primary-BackgroundBlue;
+    }
 }

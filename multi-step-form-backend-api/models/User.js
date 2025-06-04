@@ -85,7 +85,6 @@ const userSchema = new mongoose.Schema({
     },
     billing: {
         type: String,
-        required: [true, 'A User must choose billing type!'],
         trim: true,
     },
     plan: {

@@ -38,7 +38,12 @@ function App(props) {
         stepCounter: localStorage.getItem('stepNum') || 1,
         billingYearly: Boolean(localStorage.getItem('billingYearly')) || '',
         previous: false,
-        regCompleted: false
+        regCompleted: false,
+        loggedIn: Boolean(localStorage.getItem('appToken')),
+        user: {
+            token: localStorage.getItem('appToken'),
+            email: localStorage.getItem('appEmail')
+        }
     }
 
     function ourReducer(draft, action) {
@@ -119,7 +124,7 @@ function App(props) {
         if(state.billingYearly) {
             localStorage.setItem('billingYearly', state.billingYearly);
         } else {
-            localStorage.setItem('billingYearly', '');
+            localStorage.removeItem('billingYearly');
         }
     }, [state.billingYearly, state.stepCounter]);
 
@@ -144,7 +149,7 @@ function App(props) {
                 <BrowserRouter basename={ process.env.REACT_APP_FILE_PATH_DIST }>
 
                     <Routes>
-                        <Route path="/" element={<Register />} />
+                        <Route path="/" element={ <Register /> } />
                     </Routes>  
 
                 </BrowserRouter>

@@ -4,6 +4,7 @@ import Axios from 'axios';
 import StateContext from "../../StateContext";
 import DispatchContext from "../../DispatchContext";
 
+import LoaderSpinner from "../LoaderSpinner";
 import ThankYou from "./ThankYou";
 
 function StepFourSummary() {
@@ -16,7 +17,8 @@ function StepFourSummary() {
         plan: appState.stepTwo.data,
         billing: appState.billingYearly,
         addons: appState.stepThree.data,
-        submitCounter: 0
+        submitCounter: 0,
+        submitLoader: false
     });
 
     function handleSubmit(e) {
@@ -101,6 +103,7 @@ function StepFourSummary() {
 
     useEffect(() => {
         if(data.submitCounter) {
+            setData(draft => { draft.submitLoader = true; } );
             const ourRequest = Axios.CancelToken.source();
 
             async function createNewUser() {
@@ -125,6 +128,8 @@ function StepFourSummary() {
                     console.log(response);
                 } catch(err) {
                     console.log(err);
+                } finally {
+                  setData(draft => { draft.submitLoader = false; } );
                 }
             }
 
@@ -179,7 +184,10 @@ function StepFourSummary() {
 
             <footer className="flex justify-between absolute bottom-0 right-0 w-full max-xs:fixed max-xs:bottom-0 max-xs:left-0 max-xs:bg-white max-xs:p-4">
                 <button onClick={ handleStepBack } className="text-[1.0625rem] tracking-[-0.025em] font-medium text-app_neutral-CoolGray bg-transparent rounded-[0.5625rem] px-6 py-3 ml-[-1.5rem]">Go Back</button>
-                <button type="submit" form="stepThreeForm" className="text-[1.0625rem] tracking-[-0.025em] font-medium text-white bg-primary-MarineBlue rounded-[0.5625rem] px-6 py-3">Next Step</button>
+                <button type="submit" form="stepThreeForm" className={`text-[1.0625rem] tracking-[-0.025em] font-medium text-white bg-primary-PurplishBlue rounded-[0.5625rem] px-6 py-3 flex items-center justify-center gap-2 ${ data.submitLoader && 'pointer-events-none' }`}>
+                  { data.submitLoader && <LoaderSpinner width="15px" height="15px" /> }
+                  Confirm
+                </button>
             </footer>
         </div>
     );

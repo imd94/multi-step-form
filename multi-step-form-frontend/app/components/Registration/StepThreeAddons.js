@@ -54,16 +54,19 @@ function StepThreeAddons() {
         switch(value) {
             case 'Online service':
                 setState((draft) => {
+                    draft.stepValidationError = false;
                     draft.addonOne.selected = e.target.checked;
                 });
                 return;
             case 'Larger storage':
                 setState((draft) => {
+                    draft.stepValidationError = false;
                     draft.addonTwo.selected = e.target.checked;
                 });
                 return;
             case 'Customizable Profile':
                 setState((draft) => {
+                    draft.stepValidationError = false;
                     draft.addonThree.selected = e.target.checked;
                 });
                 return;
@@ -129,7 +132,7 @@ function StepThreeAddons() {
                 <div className="mb-8">
 
                     <input onChange={ handleAddonSelect } checked={ state.addonOne.selected } className="peer/online-service-addon hidden" type="checkbox" id="online-service-addon" name="online-service" value={ state.addonOne.name } />
-                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/online-service-addon:border-primary-PurplishBlue peer-checked/online-service-addon:bg-app_neutral-Alabaster max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="online-service-addon">
+                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/online-service-addon:border-primary-PurplishBlue peer-checked/online-service-addon:bg-app_neutral-Alabaster cursor-pointer max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="online-service-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonOne.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
                             <svg className={ `flex transition-all ${state.addonOne.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
@@ -145,7 +148,7 @@ function StepThreeAddons() {
                     </label>
 
                     <input onChange={ handleAddonSelect } checked={ state.addonTwo.selected } className="peer/larger-storage-addon hidden" type="checkbox" id="larger-storage-addon" name="larger-storage" value={ state.addonTwo.name } />
-                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/larger-storage-addon:border-primary-PurplishBlue peer-checked/larger-storage-addon:bg-app_neutral-Alabaster max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="larger-storage-addon">
+                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 mb-4 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/larger-storage-addon:border-primary-PurplishBlue peer-checked/larger-storage-addon:bg-app_neutral-Alabaster cursor-pointer max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="larger-storage-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonTwo.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
                             <svg className={ `flex transition-all ${state.addonTwo.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
@@ -161,7 +164,7 @@ function StepThreeAddons() {
                     </label>
 
                     <input onChange={ handleAddonSelect } checked={ state.addonThree.selected } className="peer/customizable-profile-addon hidden" type="checkbox" id="customizable-profile-addon" name="customizable-profile" value={ state.addonThree.name } />
-                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/customizable-profile-addon:border-primary-PurplishBlue peer-checked/customizable-profile-addon:bg-app_neutral-Alabaster max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="customizable-profile-addon">
+                    <label className="grid grid-cols-[1.25rem_1fr_min-content] items-center gap-6 p-5 border border-app_neutral-LightGray rounded-[.65rem] transition-all peer-checked/customizable-profile-addon:border-primary-PurplishBlue peer-checked/customizable-profile-addon:bg-app_neutral-Alabaster cursor-pointer max-xs:p-4 max-xs:py-3 max-sm:gap-4" htmlFor="customizable-profile-addon">
                         <span className={ `flex justify-center items-center text-center border rounded w-5 h-5 transition-all ${state.addonThree.selected ? 'bg-primary-PurplishBlue border-primary-PurplishBlue' : 'bg-transparent border-app_neutral-LightGray'}` }>
                             <svg className={ `flex transition-all ${state.addonThree.selected ? 'visible opacity-100' : 'invisible opacity-0'}` } xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9"><path fill="none" stroke="#FFF" strokeWidth="2" d="m1 4 3.433 3.433L10.866 1"/></svg>
                         </span>
