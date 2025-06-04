@@ -11,11 +11,13 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 apiRouter.use(cors(corsOptions));
+// Handle preflight requests for all routes
+apiRouter.options('*', cors(corsOptions));
 
 apiRouter.get('/', (req, res) => res.json('Hello, from backend!'));
 apiRouter.post('/register', userController.apiRegister);

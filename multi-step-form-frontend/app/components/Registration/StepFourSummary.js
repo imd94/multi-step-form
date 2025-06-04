@@ -118,10 +118,16 @@ function StepFourSummary() {
                     createdAt: new Date()
                 }
 
-                const cancelToken = { cancelToken: ourRequest.token };
+                //const cancelToken = { cancelToken: ourRequest.token };
+                const config = {
+                  cancelToken: ourRequest.token,
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+                };
 
                 try {
-                    const response = await Axios.post('/register', finishedData, cancelToken);
+                    const response = await Axios.post('/register', finishedData, config);
                     if(response.data.status === 'success') {
                         appDispatch({ type: 'registrationCompleted' });
                     }
