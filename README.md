@@ -34,12 +34,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://imd94.github.io/multi-step-form)
+- Solution URL: [https://www.frontendmentor.io/solutions/multi-step-form-reactexpressmongodbtailwind-css-B5tnlXqtts](https://www.frontendmentor.io/solutions/multi-step-form-reactexpressmongodbtailwind-css-B5tnlXqtts)
+- Live Site URL: [https://imd94.github.io/multi-step-form](https://imd94.github.io/multi-step-form)
 
 ## My process
 
