@@ -6,7 +6,6 @@ import Axios from 'axios';
 import './assets/styles/styles.scss';
 
 Axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-let test = '';
 
 // Context
 import StateContext from './StateContext';
