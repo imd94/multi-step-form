@@ -38,6 +38,9 @@ config = {
     path: path.resolve(__dirname, "app"),
     filename: "bundled.js",
   },
+  performance: {
+    hints: false,
+  },
   plugins: [
     //new dotenvWebpack(),
     new HtmlWebpackPlugin({
@@ -97,15 +100,15 @@ if (currentTask == "webpackBuild" || currentTask == "build") {
   config.output = {
     publicPath: process.env.REACT_APP_FILE_PATH_DIST,
     path: path.resolve(__dirname, "docs"),
-    filename: "[name].[chunkhash].js",
-    chunkFilename: "[name].[chunkhash].js",
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].js",
   }
   config.plugins.push(
     new dotenvWebpack({
       path: './.env.prod'
     }),
     new CleanWebpackPlugin(), 
-    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'}),
+    new MiniCssExtractPlugin({filename: 'styles.[contenthash].css'}),
     new RunAfterCompile()
   )
 }
@@ -117,15 +120,15 @@ if(currentTask == 'localBuild' || currentTask == 'webpackLocalBuild') {
   config.output = {
     publicPath: '/',
     path: path.resolve(__dirname, "docs"),
-    filename: "[name].[chunkhash].js",
-    chunkFilename: "[name].[chunkhash].js",
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].js",
   }
   config.plugins.push(
     new dotenvWebpack({
       path: './.env.dev'
     }),
     new CleanWebpackPlugin(), 
-    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'}),
+    new MiniCssExtractPlugin({filename: 'styles.[contenthash].css'}),
     new RunAfterCompile()
   )
 }
